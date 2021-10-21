@@ -1,0 +1,23 @@
+.navbar {
+  align-items: center;
+  background-color: #4b7bec;
+  border-bottom: 5px solid #0fb9b1;
+  color: #ffffff;
+  display: flex;
+  height: 7vh;
+  justify-content: space-between;
+  padding: 0 0rem 0 0.5rem;
+  position: relative;
+  .logo {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  @media (min-width: 1365px) {
+    .logo {
+      font-size: 2rem;
+    }
+  }
+}

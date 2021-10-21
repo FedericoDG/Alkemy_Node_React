@@ -1,0 +1,42 @@
+.navlinks {
+  align-items: center;
+  background-color: #0fb9b1;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  position: absolute;
+  top: 7vh;
+  right: 0;
+  width: 100%;
+  li {
+    margin: 0.5rem;
+    text-transform: uppercase;
+    .link {
+      color: whitesmoke;
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+  @media (min-width: 1365px) {
+    background-color: transparent;
+    flex-direction: row;
+    position: unset;
+    li {
+      margin: unset;
+      .link {
+        display: inline-block;
+        height: 7vh;
+        line-height: 7vh;
+        padding: 0rem 0.5rem;
+        &:hover {
+          background-color: #0fb9b1;
+        }
+      }
+    }
+  }
+}
+.active {
+  @media (min-width: 1365px) {
+    background-color: #0fb9b1;
+  }
+}

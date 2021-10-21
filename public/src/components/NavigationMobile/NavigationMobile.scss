@@ -1,0 +1,10 @@
+.navigationMobile {
+  display: flex;
+  .hamburguer {
+    cursor: pointer;
+    padding-right: 0.5rem;
+  }
+  @media (min-width: 1366px) {
+    display: none;
+  }
+}
