@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "email": "user1@mail.com",
-  "password": "Password1234!"
+  "password": "Password1234"
 }
 ###
 get http://localhost:3000/api/operations

@@ -1,14 +1,15 @@
 import { Redirect } from "react-router-dom";
 
-const Home = ({ authorized }) => {
+const Expenses = ({ authorized }) => {
   if (!authorized) {
     return <Redirect to='/login' />;
   }
+
   return (
     <div>
-      home
+      egresos
     </div>
   );
 };
 
-export default Home;
+export default Expenses;
