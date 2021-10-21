@@ -1,0 +1,31 @@
+.head {
+  background-color: #4b7bec;
+  color: #ffffff;
+  font-size: 0.75rem;
+  margin: 1rem auto 0rem;
+  max-width: 768px;
+  padding: 0.25rem 0;
+  width: 100%;
+  @media (min-width: 1365px) {
+    font-size: 1rem;
+  }
+  span {
+    display: inline-block;
+    text-align: center;
+    &:nth-child(1) {
+      width: 20%;
+    }
+    &:nth-child(2) {
+      width: 15%;
+    }
+    &:nth-child(3) {
+      width: 35%;
+    }
+    &:nth-child(4) {
+      width: 15%;
+    }
+    &:nth-child(5) {
+      width: 15%;
+    }
+  }
+}

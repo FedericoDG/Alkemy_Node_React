@@ -25,9 +25,11 @@
       margin: unset;
       .link {
         display: inline-block;
+        font-size: 1.5rem;
         height: 7vh;
         line-height: 7vh;
         padding: 0rem 0.5rem;
+        transition: background-color 0.5s;
         &:hover {
           background-color: #0fb9b1;
         }
