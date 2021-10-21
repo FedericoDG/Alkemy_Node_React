@@ -1,24 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+import useFetchCategory from "../hooks/useFetchCategory";
 
 import Table from "../components/Table/Table";
 
 const Incomes = ({ authorized }) => {
-  const [operations, setOperations] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/operations/ingreso', { headers: { Authorization: localStorage.getItem('token') } })
-      .then(response => {
-        setOperations(response.data);
-      }).catch(error => {
-        console.log(error);
-      });
-    return () => {
-      setLoading(false);
-    };
-  }, []);
+  const [operations, loading] = useFetchCategory('http://localhost:3000/api/operations/ingreso');
 
   if (!authorized) {
     return <Redirect to='/login' />;
