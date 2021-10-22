@@ -1,29 +1,13 @@
 import { Redirect, useParams } from "react-router-dom";
+import useFetchOperation from "../hooks/useFetchOperation";
 
 import Welcome from "../components/Welcome.js/Welcome";
 import Form from "../components/Form/Form";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Update = ({ authorized }) => {
   let { id } = useParams();
 
-  const [update, setUpdate] = useState({});
-
-  useEffect(() => {
-    let isMounted = true;
-    axios.get(`http://localhost:3000/api/operation/${id}`, { headers: { Authorization: localStorage.getItem('token') } })
-      .then(response => {
-        if (isMounted) {
-          setUpdate(response.data);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    return () => isMounted = false;
-  }, [id]);
-
+  const [update, setUpdate, setAuxFetch] = useFetchOperation(id);
 
   if (!authorized) {
     return <Redirect to='/login' />;
@@ -32,7 +16,7 @@ const Update = ({ authorized }) => {
   return (
     <div>
       <Welcome />
-      <Form update={update} setUpdate={setUpdate} />
+      <Form update={update} setUpdate={setUpdate} setAuxFetch={setAuxFetch} />
     </div>
   );
 };

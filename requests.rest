@@ -15,7 +15,7 @@ get http://localhost:3000/api/operation/45
 Authorization: {{token}}
 ###
 
-post http://localhost:3000/api/operations
+post http://localhost:3000/api/operation
 Authorization: {{token}}
 Content-Type: application/json
 
@@ -27,16 +27,17 @@ Content-Type: application/json
   "amount": 10000
 }
 ###
-put http://localhost:3000/api/operation/6
+put http://localhost:3000/api/operation/47
 Authorization: {{token}}
 Content-Type: application/json
 
 {
-  "type": "ingreso",
-  "category": "otros",
-  "date": "2021-12-12",
-  "description": "descripción del cosito",
-  "amount": 5000
+"id_operation": 47, 
+"type": "INGRESO",
+"category": "OTROS",
+"date": "2021-12-12",
+"description": "descripción del cosito",
+"amount": 5000
 }
 ###
 delete http://localhost:3000/api/operation/9

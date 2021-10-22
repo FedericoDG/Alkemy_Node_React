@@ -15,7 +15,7 @@ router.get('/operations', [middlewareOperations, verifyToken], getOperations);
 
 router.get('/operation/:id', [middlewareOperations, verifyToken], getOperation);
 
-router.post('/operations', [middlewareOperations, verifyToken, middlewarePostOneOperation], postOperation);
+router.post('/operation', [middlewareOperations, verifyToken, middlewarePostOneOperation], postOperation);
 
 router.put('/operation/:id', [middlewareOperations, verifyToken, middlewarePostOneOperation], putOperation);
 

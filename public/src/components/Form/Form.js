@@ -1,62 +1,58 @@
-import axios from "axios";
 import { useState } from "react";
+import { FiEdit } from 'react-icons/fi';
+import { BsFillPlusCircleFill } from 'react-icons/bs';
 
-const Form = ({ update, setUpdate }) => {
-  const [operation, setOperation] = useState({ date: "", type: "EGRESO", description: "", amount: "" });
+import formOnChange from "../../helpers/formOnChange";
+import formOnSubmit from "../../helpers/formOnSubmit";
 
-  const onChange = ({ target }) => {
-    if (update) {
-      if (target.name === "type") {
-        setUpdate({ ...update, type: target.value });
-      } else if (target.name === "description") {
-        setUpdate({ ...update, description: target.value });
-      } else if (target.name === "amount") {
-        setUpdate({ ...update, amount: parseFloat(target.value) });
-      }
-    } else {
-      if (target.name === "date") {
-        setOperation({ ...operation, date: target.value });
-      } else if (target.name === "type") {
-        setOperation({ ...operation, type: target.value });
-      } else if (target.name === "description") {
-        setOperation({ ...operation, description: target.value });
-      } else if (target.name === "amount") {
-        setOperation({ ...operation, amount: parseFloat(target.value) });
-      }
-    }
-  };
+import './Form.scss';
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    e.target.reset();
-    console.log(operation);
-    axios.post();
-    setOperation({ ...operation, type: "EGRESO" });
-  };
+const Form = ({ update, setUpdate, setAuxFetch }) => {
+  const [operation, setOperation] = useState({ date: "", type: "EGRESO", category: "ALQUILER", description: "", amount: "" });
 
   return (
-    <>
+    <div className="formData">
       {
         update ?
-          <form onChange={onChange} onSubmit={onSubmit}>
-            <input type="date" name="date" required defaultValue={update.date} />
-            <input type="text" name="description" placeholder="descripción" required defaultValue={update.description} />
-            <input type="number" name="amount" min="0" max="999999" step="0.1" placeholder="total" required defaultValue={update.amount} />
-            <button type="submit">Enviar</button>
-          </form>
+          <>
+            <div>
+              <FiEdit size="30px" color="#ffffff" />
+              <h1>Editar operación</h1>
+            </div>
+            <form onChange={(e) => formOnChange(e.target, update, setUpdate)} onSubmit={(e) => formOnSubmit(e, update, setUpdate, setAuxFetch, update.id_operation)}>
+              <input type="date" name="date" className="date" required defaultValue={update.date} />
+              <input type="text" name="description" className="description" placeholder="descripción" required defaultValue={update.description} />
+              <input type="number" name="amount" className="description" min="0" max="999999" step="0.1" placeholder="total" required defaultValue={update.amount} />
+              <button type="submit" className="btn">Enviar</button>
+            </form>
+          </>
           :
-          <form onChange={onChange} onSubmit={onSubmit}>
-            <input type="date" name="date" required />
-            <select name="type">
-              <option value="EGRESO">EGRESO</option>
-              <option value="INGRESO">INGRESO</option>
-            </select>
-            <input type="text" name="description" placeholder="descripción" required />
-            <input type="number" name="amount" min="0" max="999999" step="0.1" placeholder="total" required />
-            <button type="submit">Enviar</button>
-          </form>
+          <>
+            <div>
+              <BsFillPlusCircleFill size="30px" color="#ffffff" />
+              <h1>Nueva operación</h1>
+            </div>
+            <form onChange={(e) => formOnChange(e.target, operation, setOperation)} onSubmit={(e) => formOnSubmit(e, operation, setOperation, setAuxFetch)}>
+              <input type="date" name="date" className="date" required />
+              <select name="type" className="type">
+                <option value="EGRESO">EGRESO</option>
+                <option value="INGRESO">INGRESO</option>
+              </select>
+              <select name="category" className="category" required>
+                <option value="ALQUILER">ALQUILER</option>
+                <option value="COMIDA">COMIDA</option>
+                <option value="MEDICAMENTOS">MEDICAMENTOS</option>
+                <option value="VESTIMENTA">VESTIMENTA</option>
+                <option value="SUELDO">SUELDO</option>
+                <option value="OTROS">OTROS</option>
+              </select>
+              <input type="text" name="description" className="description" placeholder="descripción" required />
+              <input type="number" name="amount" className="description" min="0" max="999999" step="0.1" placeholder="total" required />
+              <button type="submit" className="btn">Enviar</button>
+            </form>
+          </>
       }
-    </>
+    </div>
   );
 };
 

@@ -22,7 +22,7 @@ const Home = ({ authorized }) => {
           :
           <>
             <Balance total={total} />
-            <Form />
+            <Form setAuxFetch={setAuxFetch}/>
             <Table operations={operations} setAuxFetch={setAuxFetch} />
           </>
       }
