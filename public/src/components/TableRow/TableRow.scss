@@ -7,27 +7,31 @@
   max-width: 768px;
   min-height: 2.5rem;
   width: 100%;
-  /* @media (min-width: 1365px) {
-    font-size: 1rem;
-  } */
+  @media (min-width: 768px) {
+    font-size: 0.8rem;
+  }
   &:hover {
-    background-color: #0fb9b025;
+    background-color: #b1b1b141;
   }
   span {
     display: inline-block;
     text-align: center;
   }
   .date {
-    font-size: 1rem;
     width: 20%;
   }
   .description {
-    font-size: 1rem;
     width: 35%;
   }
   .amount {
-    font-size: 1rem;
     width: 15%;
+  }
+  @media (min-width: 1365px) {
+    .date,
+    .description,
+    .amount {
+      font-size: 0.9rem;
+    }
   }
   .type {
     align-items: center;
@@ -54,7 +58,14 @@
     display: flex;
     justify-content: center;
     width: 15%;
-    .icon, .link {
+    .link {
+      .icon {
+        display: block;
+        cursor: pointer;
+        margin: 0 0.15rem;
+      }
+    }
+    .icon {
       cursor: pointer;
       margin: 0 0.15rem;
     }

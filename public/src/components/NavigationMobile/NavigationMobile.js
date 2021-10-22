@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { CgMenuCheese } from 'react-icons/cg';
-import { CgCloseR } from 'react-icons/cg';
+import { CgMenuRound } from 'react-icons/cg';
+import { CgCloseO } from 'react-icons/cg';
 
 import NavlLinks from '../NavLinks/NavlLinks';
 
 import './NavigationMobile.scss';
 
-const NavigationMobile = () => {
+const NavigationMobile = ({ authorized, setAuthorized }) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(!open);
@@ -14,14 +14,16 @@ const NavigationMobile = () => {
   return (
     <nav className="navigationMobile">
       {
-        open &&
-        <NavlLinks handleClick={handleClick} />
+        open && authorized &&
+        <NavlLinks handleClick={handleClick} setAuthorized={setAuthorized} />
       }
       {
-        open ?
-          <CgCloseR className="hamburguer" size="30px" color="white" onClick={handleClick} />
-          :
-          <CgMenuCheese className="hamburguer" size="30px" color="white" onClick={handleClick} />
+        open && authorized &&
+        <CgCloseO className="hamburguer" size="35px" color="white" onClick={handleClick} />
+      }
+      {
+        !open && authorized &&
+        <CgMenuRound className="hamburguer" size="35px" color="white" onClick={handleClick} />
       }
     </nav>
   );

@@ -1,14 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import {  NavLink, useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import './NavLinks.scss';
 
-const NavlLinks = ({ handleClick }) => {
+const NavlLinks = ({ handleClick, setAuthorized }) => {
   const animationFrom = { opacity: 0, y: -40 };
   const animationTo = { opacity: 1, y: 0 };
 
+  let history = useHistory()
+
   const handleOnClick = () => {
     localStorage.clear();
+    setAuthorized(false);
+    history.push("/login")
   };
 
   return (
@@ -32,7 +36,7 @@ const NavlLinks = ({ handleClick }) => {
         animate={animationTo}
         transition={{ delay: 0.4 }}
         onClick={handleClick}>
-        <a className="link" href='/login' onClick={handleOnClick}>salir</a>
+        <span className="link" to='/login' onClick={handleOnClick}>salir</span>
       </motion.li>
     </ul>
   );

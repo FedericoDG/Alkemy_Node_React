@@ -6,7 +6,7 @@ import NavigationMobile from '../NavigationMobile/NavigationMobile';
 
 import './Navbar.scss';
 
-const Navbar = () => {
+const Navbar = ({ authorized, setAuthorized }) => {
   const animationFrom = { opacity: 0, y: -40 };
   const animationTo = { opacity: 1, y: 0 };
 
@@ -17,8 +17,8 @@ const Navbar = () => {
         transition={{ delay: 0.1 }}>
         <Link className="logo" to="/">alkemy</Link>
       </motion.span>
-      <NavigationMobile />
-      <NavigationDesktop />
+      <NavigationMobile authorized={authorized} setAuthorized={setAuthorized} />
+      <NavigationDesktop authorized={authorized} setAuthorized={setAuthorized} />
     </div>
   );
 };

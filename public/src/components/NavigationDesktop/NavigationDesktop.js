@@ -2,10 +2,13 @@ import NavlLinks from '../NavLinks/NavlLinks';
 
 import './NavigationDesktop.scss';
 
-const NavigationDesktop = () => {
+const NavigationDesktop = ({ authorized, setAuthorized }) => {
   return (
     <nav className="navigationDesktop">
-      <NavlLinks />
+      {
+        authorized &&
+        <NavlLinks setAuthorized={setAuthorized} />
+      }
     </nav>
   );
 };

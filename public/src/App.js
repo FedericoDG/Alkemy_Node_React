@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div className="app">
       <Router>
-        <Navbar />
+        <Navbar authorized={authorized} setAuthorized={setAuthorized}/>
         <Switch>
           <Route path="/login" component={() => <Login authorized={authorized} setAuthorized={setAuthorized} />} />
           <Route exact path="/" component={() => <Home authorized={authorized} />} />
