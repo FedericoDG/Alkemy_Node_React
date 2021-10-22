@@ -4,20 +4,11 @@ import { CgTrash } from 'react-icons/cg';
 import { BsFillArrowUpCircleFill } from 'react-icons/bs';
 import { BsFillArrowDownCircleFill } from 'react-icons/bs';
 
+import remove from '../../helpers/remove';
+
 import './TableRow.scss';
-import axios from 'axios';
 
 const TableRow = ({ operation, setAuxFetch }) => {
-
-  const removeRow = ({ target }) => {
-    axios.delete(`http://localhost:3000/api/operations/${target.id}`, { headers: { Authorization: localStorage.getItem('token') } })
-      .then(response => {
-        console.log(response);
-        setAuxFetch(prev => !prev);
-      })
-      .catch(error => console.log(error));
-  };
-
   return (
     <div className="row">
       <span className="date">{operation.date}</span>
@@ -34,7 +25,7 @@ const TableRow = ({ operation, setAuxFetch }) => {
       <span className="amount">$ {operation.amount.toFixed(2)}</span>
       <div className="icons">
         <RiEdit2Fill className="icon" size="20px" color="#4b7bec" />
-        <CgTrash id={operation.id_operation} className="icon" size="20px" color="#e40000" onClick={removeRow} />
+        <CgTrash id={operation.id_operation} className="icon" size="20px" color="#e40000" onClick={({ target }) => remove(target.id, setAuxFetch)} />
       </div>
     </div>
   );

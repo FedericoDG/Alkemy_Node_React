@@ -6,7 +6,7 @@ import Welcome from "../components/Welcome.js/Welcome";
 
 const Category = ({ authorized }) => {
   const { cat } = useParams();
-  console.log(cat);
+
   const [operations, loading, setAuxFetch] = useFetchCategory(`http://localhost:3000/api/category/${cat}`);
 
   if (!authorized) {
