@@ -2,7 +2,7 @@ import TableRow from "../TableRow/TableRow";
 
 import './Table.scss';
 
-const Table = ({ operations }) => {
+const Table = ({ operations, setAuxFetch }) => {
   return (
     <>
       <div className="head">
@@ -16,7 +16,7 @@ const Table = ({ operations }) => {
       {
         operations.map(operation => {
           return (
-            <TableRow operation={operation} key={operation.id_operation} />
+            <TableRow operation={operation} setAuxFetch={setAuxFetch} key={operation.id_operation} />
           );
         })
       }

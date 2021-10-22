@@ -4,19 +4,22 @@ import { useEffect, useState } from "react";
 const useFetchCategory = (url) => {
   const [operations, setOperations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [auxFetch, setAuxFetch] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
     axios.get(url, { headers: { Authorization: localStorage.getItem('token') } })
       .then(response => {
-        setOperations(response.data);
+        if (isMounted) {
+          setOperations(response.data);
+          setLoading(false);
+        }
       }).catch(error => {
         console.log(error);
       });
-    return () => {
-      setLoading(false);
-    };
-  }, [url]);
-  return [operations, loading];
+    return () => isMounted = false;
+  }, [url, auxFetch]);
+  return [operations, loading, setAuxFetch];
 };
 
 export default useFetchCategory;

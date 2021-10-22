@@ -8,13 +8,13 @@ import Incomes from "./pages/Incomes";
 import Expenses from "./pages/Expenses";
 
 import './App.scss';
+import Category from "./pages/Category";
 
 const App = () => {
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('logged')) {
-      console.log('AUTORIZADO');
       setAuthorized(true);
     }
   }, [authorized]);
@@ -28,6 +28,7 @@ const App = () => {
           <Route exact path="/" component={() => <Home authorized={authorized} />} />
           <Route path="/ingresos" component={() => <Incomes authorized={authorized} />} />
           <Route path="/egresos" component={() => <Expenses authorized={authorized} />} />
+          <Route path="/category/:cat" component={() => <Category authorized={authorized} />} />
         </Switch>
       </Router>
     </div>

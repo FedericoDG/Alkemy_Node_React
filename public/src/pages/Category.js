@@ -1,13 +1,13 @@
-import { Redirect } from "react-router-dom";
-import Balance from "../components/Balance/Balance";
-import Form from "../components/Form/Form";
+import { Redirect, useParams } from "react-router-dom";
+import useFetchCategory from "../hooks/useFetchCategory";
+
 import Table from "../components/Table/Table";
 import Welcome from "../components/Welcome.js/Welcome";
 
-import useFetchAll from "../hooks/useFetchAll";
-
-const Home = ({ authorized }) => {
-  const [operations, total, loading, setAuxFetch] = useFetchAll();
+const Category = ({ authorized }) => {
+  const { cat } = useParams();
+  console.log(cat);
+  const [operations, loading, setAuxFetch] = useFetchCategory(`http://localhost:3000/api/category/${cat}`);
 
   if (!authorized) {
     return <Redirect to='/login' />;
@@ -21,8 +21,6 @@ const Home = ({ authorized }) => {
           <p>CARGANDO...</p>
           :
           <>
-            <Balance total={total} />
-            <Form />
             <Table operations={operations} setAuxFetch={setAuxFetch} />
           </>
       }
@@ -30,4 +28,4 @@ const Home = ({ authorized }) => {
   );
 };
 
-export default Home;
+export default Category;

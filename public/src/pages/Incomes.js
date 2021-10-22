@@ -2,9 +2,10 @@ import { Redirect } from "react-router-dom";
 import useFetchCategory from "../hooks/useFetchCategory";
 
 import Table from "../components/Table/Table";
+import Welcome from "../components/Welcome.js/Welcome";
 
 const Incomes = ({ authorized }) => {
-  const [operations, loading] = useFetchCategory('http://localhost:3000/api/operations/ingreso');
+  const [operations, loading, setAuxFetch] = useFetchCategory('http://localhost:3000/api/operations/ingreso');
 
   if (!authorized) {
     return <Redirect to='/login' />;
@@ -12,12 +13,13 @@ const Incomes = ({ authorized }) => {
 
   return (
     <div>
+      <Welcome />
       {
-        !loading ?
+        loading ?
           <p>CARGANDO...</p>
           :
           <>
-            <Table operations={operations} />
+            <Table operations={operations} setAuxFetch={setAuxFetch} />
           </>
       }
     </div>

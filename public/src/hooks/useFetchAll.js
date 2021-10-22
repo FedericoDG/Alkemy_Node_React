@@ -5,20 +5,24 @@ const useFetchAll = () => {
   const [operations, setOperations] = useState([]);
   const [total, setTotal] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [auxFetch, setAuxFetch] = useState(false);
 
+  const token = localStorage.getItem('token');
   useEffect(() => {
-    axios.get('http://localhost:3000/api/operations', { headers: { Authorization: localStorage.getItem('token') } })
+    let isMounted = true;
+    axios.get('http://localhost:3000/api/operations', { headers: { Authorization: token } })
       .then(response => {
-        setOperations(response.data);
-        setTotal(response.data.reduce((acc, item) => item.type === 'INGRESO' ? acc + parseFloat(item.amount) : acc - parseFloat(item.amount), 0).toFixed(2));
+        if (isMounted) {
+          setOperations(response.data);
+          setTotal(response.data.reduce((acc, item) => item.type === 'INGRESO' ? acc + parseFloat(item.amount) : acc - parseFloat(item.amount), 0).toFixed(2));
+          setLoading(false);
+        }
       }).catch(error => {
         console.log(error);
       });
-    return () => {
-      setLoading(false);
-    };
-  }, []);
-  return [operations, total, loading];
+    return () => isMounted = false;
+  }, [auxFetch, token]);
+  return [operations, total, loading, setAuxFetch];
 };
 
 export default useFetchAll;
