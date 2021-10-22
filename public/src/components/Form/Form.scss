@@ -1,21 +1,21 @@
 .formData {
   align-items: center;
-  margin: 0 auto;
+  background-color: #0fb9b1;
+  color: #ffffff;
   display: flex;
   justify-content: space-around;
-  background-color: #0fb9b1;
+  margin: 0 auto;
   max-width: 768px;
-  color: #ffffff;
   div {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
     padding: 1rem;
     h1 {
       font-size: 1.25rem;
+      font-weight: 600;
       margin-left: 0.5rem;
       text-transform: uppercase;
-      font-weight: 600;
     }
   }
   form {
@@ -25,12 +25,12 @@
     .type,
     .category,
     .btn {
-      display: block;
-      width: 150px;
-      margin: 0.5rem;
-      text-align: center;
-      outline: 2px solid transparent;
       border: none;
+      display: block;
+      margin: 0.5rem;
+      outline: 2px solid transparent;
+      text-align: center;
+      width: 150px;
       &:focus {
         outline: 2px solid #4b7bec;
       }

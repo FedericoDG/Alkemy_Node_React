@@ -6,15 +6,15 @@ const formOnSubmit = (e, object, setObject, setAuxFetch, id) => {
   if (id) {
     axios.put(`http://localhost:3000/api/operation/${id}`, object, { headers: { Authorization: token } })
       .then(response => {
-        console.log(response.data);
+        alert(response.data.message);
       })
       .catch(error => console.log(error));
-    console.log(id);
   } else {
     axios.post(`http://localhost:3000/api/operation/`, object, { headers: { Authorization: token } })
       .then(response => {
-        console.log(response.data);
-      });
+        console.log(response.data.message);
+      })
+      .catch(error => console.log(error));
     setObject({ ...object, category: "ALQUILER", type: "EGRESO" });
   }
   setAuxFetch(prev => !prev);

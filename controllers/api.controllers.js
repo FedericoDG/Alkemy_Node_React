@@ -50,7 +50,7 @@ const postOperation = async (req, res) => {
     const userId = decodeToken(req.token);
     await insertInDB({ id_user: userId, ...req.operation });
     res.json({
-      message: 'Operación agragada.'
+      message: 'Operación agregada.'
     }
     );
   } catch (error) {
