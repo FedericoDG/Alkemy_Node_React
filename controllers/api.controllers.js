@@ -1,6 +1,7 @@
 const signToken = require('../helpers/signToken');
 const decodeToken = require('../helpers/decodeToken');
 const getAllOperations = require('../helpers/getAllOperations');
+const getOneOperation = require('../helpers/getOneOperation');
 const getOperationsByType = require('../helpers/operationsByType');
 const getOperationsByCategory = require('../helpers/operationsByCategory');
 const insertInDB = require('../helpers/createInDB');
@@ -19,6 +20,20 @@ const getOperations = async (req, res) => {
   try {
     const userId = decodeToken(req.token);
     const operations = await getAllOperations(userId);
+    res.json(
+      operations
+    );
+  } catch (error) {
+    res.status(500).json({
+      message: 'Ha ocurrido un error.',
+      error
+    });
+  }
+};
+const getOperation = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const operations = await getOneOperation(id);
     res.json(
       operations
     );
@@ -113,6 +128,7 @@ const category = async (req, res) => {
 module.exports = {
   login,
   getOperations,
+  getOperation,
   postOperation,
   putOperation,
   deleteOperation,

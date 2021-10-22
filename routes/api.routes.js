@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { login, getOperations, operationsType, category, postOperation, putOperation, deleteOperation } = require('../controllers/api.controllers');
+const { login, getOperations, getOperation, operationsType, category, postOperation, putOperation, deleteOperation } = require('../controllers/api.controllers');
 
 const middlewareLogin = require('../middlewares/mw_login');
 const middlewareOperations = require('../middlewares/mw_operations');
@@ -13,11 +13,13 @@ router.post('/login', [middlewareLogin], login);
 
 router.get('/operations', [middlewareOperations, verifyToken], getOperations);
 
+router.get('/operation/:id', [middlewareOperations, verifyToken], getOperation);
+
 router.post('/operations', [middlewareOperations, verifyToken, middlewarePostOneOperation], postOperation);
 
-router.put('/operations/:id', [middlewareOperations, verifyToken, middlewarePostOneOperation], putOperation);
+router.put('/operation/:id', [middlewareOperations, verifyToken, middlewarePostOneOperation], putOperation);
 
-router.delete('/operations/:id', [middlewareOperations, verifyToken], deleteOperation);
+router.delete('/operation/:id', [middlewareOperations, verifyToken], deleteOperation);
 
 router.get('/operations/:type', [middlewareOperations, verifyToken], operationsType);
 

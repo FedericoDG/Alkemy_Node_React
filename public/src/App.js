@@ -6,9 +6,10 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Incomes from "./pages/Incomes";
 import Expenses from "./pages/Expenses";
+import Category from "./pages/Category";
+import Update from "./pages/Update";
 
 import './App.scss';
-import Category from "./pages/Category";
 
 const App = () => {
   const [authorized, setAuthorized] = useState(false);
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/ingresos" component={() => <Incomes authorized={authorized} />} />
           <Route path="/egresos" component={() => <Expenses authorized={authorized} />} />
           <Route path="/category/:cat" component={() => <Category authorized={authorized} />} />
+          <Route path="/update/:id" component={() => <Update authorized={authorized} />} />
         </Switch>
       </Router>
     </div>
