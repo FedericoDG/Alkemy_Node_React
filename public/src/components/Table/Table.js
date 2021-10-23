@@ -2,7 +2,7 @@ import TableRow from "../TableRow/TableRow";
 
 import './Table.scss';
 
-const Table = ({ operations, setAuxFetch }) => {
+const Table = ({ operations, setAuxFetch, home }) => {
   return (
     <>
       <div className="head">
@@ -11,14 +11,25 @@ const Table = ({ operations, setAuxFetch }) => {
         <span>Descripción</span>
         <span>Total </span>
         <span>Acciones </span>
-
       </div>
       {
-        operations.map(operation => {
-          return (
-            <TableRow operation={operation} setAuxFetch={setAuxFetch} key={operation.id_operation} />
-          );
-        })
+        home ?
+          operations.map((operation, idx) => {
+            if (idx < 10) {
+              return (
+                <TableRow operation={operation} setAuxFetch={setAuxFetch} key={operation.id_operation} />
+              );
+
+            } else {
+              return null;
+            }
+          })
+          :
+          operations.map(operation => {
+            return (
+              <TableRow operation={operation} setAuxFetch={setAuxFetch} key={operation.id_operation} />
+            );
+          })
       }
     </>
   );

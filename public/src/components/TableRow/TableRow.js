@@ -15,9 +15,9 @@ const TableRow = ({ operation, setAuxFetch }) => {
       <div className="type">
         {
           operation.type === 'INGRESO' ?
-            <Link to="/ingresos" className="link"><FaRegArrowAltCircleDown className="iconType" color="#0fb9b1" /></Link>
+            <Link to="/incomes" className="link"><FaRegArrowAltCircleDown className="iconType" color="#0fb9b1" /></Link>
             :
-            <Link to="/egresos" className="link"><FaRegArrowAltCircleUp className="iconType" color="#e40000" /></Link>
+            <Link to="/expenses" className="link"><FaRegArrowAltCircleUp className="iconType" color="#e40000" /></Link>
         }
         <Link to={`/category/${operation.category.toLowerCase()}`} className="link"><span>{operation.category}</span></Link>
       </div>

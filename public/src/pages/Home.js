@@ -25,7 +25,7 @@ const Home = ({ authorized }) => {
           <>
             <Balance total={total} />
             <Form setAuxFetch={setAuxFetch} />
-            <Table operations={operations} setAuxFetch={setAuxFetch} />
+            <Table operations={operations} setAuxFetch={setAuxFetch} home={true} />
           </>
       }
     </div>

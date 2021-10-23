@@ -34,7 +34,7 @@ class Server {
   listen() {
     this.app.listen(this.PORT, () => {
       console.clear();
-      console.log(`Server live on: http://localhost:${this.PORT}`);
+      console.log(`API live on port: ${this.PORT}`);
     });
   }
 }

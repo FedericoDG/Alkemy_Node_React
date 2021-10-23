@@ -4,7 +4,7 @@ import axios from "axios";
 const useFetchOperation = (id) => {
   const [update, setUpdate] = useState({});
   const [auxFetch, setAuxFetch] = useState(false);
-  
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const useFetchOperation = (id) => {
       .then(response => {
         if (isMounted) {
           setUpdate(response.data);
-          setAuxFetch(auxFetch)
+          setAuxFetch(auxFetch);
         }
       })
       .catch(error => {

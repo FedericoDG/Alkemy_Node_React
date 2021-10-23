@@ -23,12 +23,12 @@ const App = () => {
   return (
     <div className="app">
       <Router>
-        <Navbar authorized={authorized} setAuthorized={setAuthorized}/>
+        <Navbar authorized={authorized} setAuthorized={setAuthorized} />
         <Switch>
           <Route path="/login" component={() => <Login authorized={authorized} setAuthorized={setAuthorized} />} />
           <Route exact path="/" component={() => <Home authorized={authorized} />} />
-          <Route path="/ingresos" component={() => <Incomes authorized={authorized} />} />
-          <Route path="/egresos" component={() => <Expenses authorized={authorized} />} />
+          <Route path="/incomes" component={() => <Incomes authorized={authorized} />} />
+          <Route path="/expenses" component={() => <Expenses authorized={authorized} />} />
           <Route path="/category/:cat" component={() => <Category authorized={authorized} />} />
           <Route path="/update/:id" component={() => <Update authorized={authorized} />} />
         </Switch>
