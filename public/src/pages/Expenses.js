@@ -1,4 +1,4 @@
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import useFetchCategory from "../hooks/useFetchCategory";
 
 import Table from "../components/Table/Table";
@@ -7,8 +7,10 @@ import Welcome from "../components/Welcome.js/Welcome";
 const Expenses = ({ authorized }) => {
   const [operations, loading, setAuxFetch] = useFetchCategory('http://localhost:3000/api/operations/egreso');
 
+  let history = useHistory();
+
   if (!authorized) {
-    return <Redirect to='/login' />;
+    history.push("/login");
   }
 
   return (

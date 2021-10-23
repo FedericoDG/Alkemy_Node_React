@@ -6,9 +6,11 @@ const useFetchCategory = (url) => {
   const [loading, setLoading] = useState(true);
   const [auxFetch, setAuxFetch] = useState(false);
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     let isMounted = true;
-    axios.get(url, { headers: { Authorization: localStorage.getItem('token') } })
+    axios.get(url, { headers: { Authorization: token } })
       .then(response => {
         if (isMounted) {
           setOperations(response.data);
@@ -18,7 +20,7 @@ const useFetchCategory = (url) => {
         console.log(error);
       });
     return () => isMounted = false;
-  }, [url, auxFetch]);
+  }, [url, auxFetch, token]);
   return [operations, loading, setAuxFetch];
 };
 

@@ -15,6 +15,7 @@ const useLogin = (setAuthorized) => {
       setlogin({ ...login, password: target.value });
     }
   };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:3000/api/login', login)
@@ -30,7 +31,7 @@ const useLogin = (setAuthorized) => {
         console.log(error.response.data.message);
       });
   };
-  return [error, handleOnChange, handleOnSubmit ]
+  return [error, handleOnChange, handleOnSubmit];
 };
 
 export default useLogin;

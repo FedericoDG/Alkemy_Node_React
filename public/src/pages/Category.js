@@ -1,4 +1,4 @@
-import { Redirect, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import useFetchCategory from "../hooks/useFetchCategory";
 
 import Table from "../components/Table/Table";
@@ -9,8 +9,10 @@ const Category = ({ authorized }) => {
 
   const [operations, loading, setAuxFetch] = useFetchCategory(`http://localhost:3000/api/category/${cat}`);
 
+  let history = useHistory();
+
   if (!authorized) {
-    return <Redirect to='/login' />;
+    history.push("/login");
   }
 
   return (

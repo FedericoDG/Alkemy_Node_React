@@ -3,7 +3,7 @@ import useLogin from '../hooks/useLogin';
 import './Login.scss';
 
 const Login = ({ authorized, setAuthorized }) => {
-const [error, handleOnChange, handleOnSubmit ] = useLogin(setAuthorized)
+  const [error, handleOnChange, handleOnSubmit] = useLogin(setAuthorized);
 
   if (authorized) {
     return <Redirect to='/' />;

@@ -7,7 +7,7 @@ const Table = ({ operations, setAuxFetch }) => {
     <>
       <div className="head">
         <span>Fecha</span>
-        <span>Tipo</span>
+        <span>Categoría</span>
         <span>Descripción</span>
         <span>Total </span>
         <span>Acciones </span>

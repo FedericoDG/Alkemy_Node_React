@@ -8,6 +8,7 @@ const useFetchAll = () => {
   const [auxFetch, setAuxFetch] = useState(false);
 
   const token = localStorage.getItem('token');
+  
   useEffect(() => {
     let isMounted = true;
     axios.get('http://localhost:3000/api/operations', { headers: { Authorization: token } })
