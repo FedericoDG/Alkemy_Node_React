@@ -1,3 +1,4 @@
-request.rest
+.gitignore
+requests.rest
 node_modules/
 public/node_modules/
