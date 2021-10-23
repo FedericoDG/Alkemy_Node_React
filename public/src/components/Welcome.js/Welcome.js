@@ -1,8 +1,8 @@
-import './Welcome.scss'
+import './Welcome.scss';
 
 const Welcome = () => {
   return (
-    <h1>Hola {localStorage.getItem('email')}</h1>
+    <h1 className="welcome">Usuario: {localStorage.getItem('email')}</h1>
   );
 };
 

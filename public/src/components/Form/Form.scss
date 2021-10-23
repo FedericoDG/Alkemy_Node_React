@@ -4,7 +4,7 @@
   color: #ffffff;
   display: flex;
   justify-content: space-around;
-  margin: 0 auto;
+  margin: 1rem auto;
   max-width: 768px;
   div {
     align-items: center;
@@ -26,9 +26,11 @@
     .category,
     .btn {
       border: none;
+      border-radius: 5px;
       display: block;
       margin: 0.5rem;
       outline: 2px solid transparent;
+      padding: 0.25rem;
       text-align: center;
       width: 150px;
       &:focus {
