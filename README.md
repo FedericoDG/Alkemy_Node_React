@@ -36,7 +36,7 @@ npm install
 ```
 
 4. Crear una base de datos (nombre a elección).
-5. Importar el archivo **alkemy.sql** que se encuentra en la carpeta SQL. Puedes utiliar algún gestor de base de datos como _phpMyAdmin_, _HeidiSQL_ o similar.
+5. Importar el archivo **alkemy.sql** que se encuentra en la carpeta SQL. Puedes utilizar algún gestor de base de datos como _phpMyAdmin_, _HeidiSQL_ o similar.
 6. Editar el archivo **.env** con los datos de conexión de tu base de datos.
 
 ```
