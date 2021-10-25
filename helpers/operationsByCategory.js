@@ -1,7 +1,7 @@
 const dataBase = require('../database/connection');
 
 const getOperationsByCategory = (id, category) => {
-  const query = 'SELECT id_operation, type, category, DATE_FORMAT(date, "%Y-%m-%d") AS date, description, amount FROM operations WHERE id_user = ? AND category = ?;';
+  const query = 'SELECT id_operation, type, category, DATE_FORMAT(date, "%Y-%m-%d") AS date, description, amount FROM operations WHERE id_user = ? AND category = ? ORDER BY id_operation DESC;';
   return new Promise((resolve, reject) => {
     dataBase.query(query, [id, category], (error, response) => {
       if (error) {
