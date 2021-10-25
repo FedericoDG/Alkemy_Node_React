@@ -1,13 +1,18 @@
+import { useContext } from 'react';
+import UserContext from '../../context/Contex';
+
 import NavlLinks from '../NavLinks/NavlLinks';
 
 import './NavigationDesktop.scss';
 
-const NavigationDesktop = ({ authorized, setAuthorized }) => {
+const NavigationDesktop = () => {
+  const { authorized } = useContext(UserContext);
+
   return (
     <nav className="navigationDesktop">
       {
         authorized &&
-        <NavlLinks setAuthorized={setAuthorized} />
+        <NavlLinks />
       }
     </nav>
   );

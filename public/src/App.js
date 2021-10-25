@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import UserProvider from "./context/UserProvider";
 
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login";
@@ -12,27 +12,21 @@ import Update from "./pages/Update";
 import './App.scss';
 
 const App = () => {
-  const [authorized, setAuthorized] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem('logged')) {
-      setAuthorized(true);
-    }
-  }, [authorized]);
-
   return (
     <div className="app">
-      <Router>
-        <Navbar authorized={authorized} setAuthorized={setAuthorized} />
-        <Switch>
-          <Route path="/login" component={() => <Login authorized={authorized} setAuthorized={setAuthorized} />} />
-          <Route exact path="/" component={() => <Home authorized={authorized} />} />
-          <Route path="/incomes" component={() => <Incomes authorized={authorized} />} />
-          <Route path="/expenses" component={() => <Expenses authorized={authorized} />} />
-          <Route path="/category/:cat" component={() => <Category authorized={authorized} />} />
-          <Route path="/update/:id" component={() => <Update authorized={authorized} />} />
-        </Switch>
-      </Router>
+      <UserProvider>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
+            <Route path="/incomes" component={Incomes} />
+            <Route path="/expenses" component={Expenses} />
+            <Route path="/category/:cat" component={Category} />
+            <Route path="/update/:id" component={Update} />
+          </Switch>
+        </Router>
+      </UserProvider>
     </div>
   );
 };

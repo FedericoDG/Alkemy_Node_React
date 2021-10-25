@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const formOnSubmit = (e, object, setObject, setAuxFetch, id) => {
+const formOnSubmit = (e, object, setObject, setAuxFetch, token, id) => {
   e.preventDefault();
-  const token = localStorage.getItem('token');
   if (id) {
     axios.put(`http://localhost:3000/api/operation/${id}`, object, { headers: { Authorization: token } })
       .then(response => {
         alert(response.data.message);
+        setAuxFetch(prev => !prev);
       })
       .catch(error => console.log(error));
   } else {
@@ -16,8 +16,8 @@ const formOnSubmit = (e, object, setObject, setAuxFetch, id) => {
       })
       .catch(error => console.log(error));
     setObject({ ...object, category: "ALQUILER", type: "EGRESO" });
+    setAuxFetch(prev => !prev);
   }
-  setAuxFetch(prev => !prev);
   e.target.reset();
   return object;
 };

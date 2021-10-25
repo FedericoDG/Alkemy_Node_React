@@ -1,9 +1,13 @@
+import { useContext } from 'react';
+import UserContext from '../../context/Contex';
 import { NavLink, useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import './NavLinks.scss';
 
-const NavlLinks = ({ handleClick, setAuthorized }) => {
+const NavlLinks = ({ handleClick }) => {
+  const { setAuthorized } = useContext(UserContext);
+
   const animationFrom = { opacity: 0, y: -40 };
   const animationTo = { opacity: 1, y: 0 };
 

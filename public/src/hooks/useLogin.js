@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
+import UserContext from '../context/Contex';
 import axios from 'axios';
 
-const useLogin = (setAuthorized) => {
+const useLogin = () => {
   const [login, setlogin] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+
+  const { setUser, setAuthorized } = useContext(UserContext);
 
   let history = useHistory();
 
@@ -20,10 +23,10 @@ const useLogin = (setAuthorized) => {
     e.preventDefault();
     axios.post('http://localhost:3000/api/login', login)
       .then(response => {
-        localStorage.setItem('logged', 'true');
-        localStorage.setItem('email', response.data.email);
-        localStorage.setItem('token', `Bearer ${response.data.token}`);
-        setAuthorized((prev) => !prev);
+        setAuthorized(true);
+        localStorage.setItem('authorized', 'true');
+        localStorage.setItem('user', JSON.stringify({ ...response.data, token: `Bearer ${response.data.token}` }));
+        setUser({ ...response.data, token: `Bearer ${response.data.token}` });
         history.push('/');
       })
       .catch(error => {

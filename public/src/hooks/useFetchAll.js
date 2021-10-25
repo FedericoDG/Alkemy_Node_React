@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import UserContext from '../context/Contex';
 import axios from "axios";
 
 const useFetchAll = () => {
@@ -7,11 +8,11 @@ const useFetchAll = () => {
   const [loading, setLoading] = useState(true);
   const [auxFetch, setAuxFetch] = useState(false);
 
-  const token = localStorage.getItem('token');
-  
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
     let isMounted = true;
-    axios.get('http://localhost:3000/api/operations', { headers: { Authorization: token } })
+    axios.get('http://localhost:3000/api/operations', { headers: { Authorization: user?.token } })
       .then(response => {
         if (isMounted) {
           setOperations(response.data);
@@ -22,7 +23,7 @@ const useFetchAll = () => {
         console.log(error);
       });
     return () => isMounted = false;
-  }, [auxFetch, token]);
+  }, [auxFetch, user?.token]);
   return [operations, total, loading, setAuxFetch];
 };
 

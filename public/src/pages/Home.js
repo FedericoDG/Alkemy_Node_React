@@ -1,14 +1,16 @@
 import { useHistory } from "react-router-dom";
+import UserContext from '../context/Contex';
 import Balance from "../components/Balance/Balance";
 import Form from "../components/Form/Form";
 import Table from "../components/Table/Table";
 import Welcome from "../components/Welcome.js/Welcome";
 
 import useFetchAll from "../hooks/useFetchAll";
+import { useContext } from "react";
 
-const Home = ({ authorized }) => {
+const Home = () => {
   const [operations, total, loading, setAuxFetch] = useFetchAll();
-
+  const { authorized } = useContext(UserContext);
   let history = useHistory();
 
   if (!authorized) {

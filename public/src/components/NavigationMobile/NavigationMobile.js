@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import UserContext from '../../context/Contex';
 import { CgMenuRound } from 'react-icons/cg';
 import { CgCloseO } from 'react-icons/cg';
 
@@ -6,8 +7,10 @@ import NavlLinks from '../NavLinks/NavlLinks';
 
 import './NavigationMobile.scss';
 
-const NavigationMobile = ({ authorized, setAuthorized }) => {
+const NavigationMobile = () => {
   const [open, setOpen] = useState(false);
+
+  const { authorized } = useContext(UserContext);
 
   const handleClick = () => setOpen(!open);
 
@@ -15,7 +18,7 @@ const NavigationMobile = ({ authorized, setAuthorized }) => {
     <nav className="navigationMobile">
       {
         open && authorized &&
-        <NavlLinks handleClick={handleClick} setAuthorized={setAuthorized} />
+        <NavlLinks handleClick={handleClick} />
       }
       {
         open && authorized &&

@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import useLogin from '../hooks/useLogin';
+import UserContext from '../context/Contex';
 import './Login.scss';
 
-const Login = ({ authorized, setAuthorized }) => {
-  const [error, handleOnChange, handleOnSubmit] = useLogin(setAuthorized);
+const Login = () => {
+  const [error, handleOnChange, handleOnSubmit] = useLogin();
+  const { authorized } = useContext(UserContext);
 
   if (authorized) {
     return <Redirect to='/' />;

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import UserContext from '../context/Contex';
 import axios from "axios";
 
 const useFetchCategory = (url) => {
@@ -6,11 +7,11 @@ const useFetchCategory = (url) => {
   const [loading, setLoading] = useState(true);
   const [auxFetch, setAuxFetch] = useState(false);
 
-  const token = localStorage.getItem('token');
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     let isMounted = true;
-    axios.get(url, { headers: { Authorization: token } })
+    axios.get(url, { headers: { Authorization: user?.token } })
       .then(response => {
         if (isMounted) {
           setOperations(response.data);
@@ -20,7 +21,7 @@ const useFetchCategory = (url) => {
         console.log(error);
       });
     return () => isMounted = false;
-  }, [url, auxFetch, token]);
+  }, [url, auxFetch, user?.token]);
   return [operations, loading, setAuxFetch];
 };
 
