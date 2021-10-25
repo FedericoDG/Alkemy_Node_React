@@ -16,7 +16,7 @@ const middlewareLogin = (req, res = response, next) => {
       throw new Error(error);
     } else {
       if (response.length < 1) {
-        return res.status(404).json({
+        return res.status(401).json({
           message: 'Usuario inexistente.'
         });
       }
